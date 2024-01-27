@@ -74,3 +74,21 @@
       (unless (server-running-p)
         (message "Starting a server...")
         (server-start)))))
+
+(use-package exec-path-from-shell
+  :ensure t
+  :config (exec-path-from-shell-initialize))
+
+(use-package vterm
+  :ensure t
+  :custom (vterm-always-compile-module t))
+
+(use-package flycheck-clojure
+  :ensure t)
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+
+(use-package flycheck-clj-kondo
+  :ensure t)
