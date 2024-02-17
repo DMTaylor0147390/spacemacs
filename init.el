@@ -92,3 +92,9 @@
 
 (use-package flycheck-clj-kondo
   :ensure t)
+
+(use-package sly
+  :ensure t)
+
+(use-package slime
+  :ensure t)
