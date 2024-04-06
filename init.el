@@ -86,7 +86,8 @@
   :custom (vterm-always-compile-module t))
 
 (use-package flycheck-clojure
-  :ensure t)
+  :ensure t
+  :init (flycheck-clojure-setup))
 
 (use-package flycheck
   :ensure t
