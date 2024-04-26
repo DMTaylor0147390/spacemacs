@@ -105,3 +105,5 @@
 (use-package pdf-tools
   :ensure t
   :init (pdf-tools-install))
+
+(setq org-agenda-files (directory-files-recursively "~/org/tdls" "\\.org"))
