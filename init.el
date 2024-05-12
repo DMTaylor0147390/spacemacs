@@ -119,7 +119,7 @@
                      (if host host "www.google.com"))))
 
 (defun org-sync-hook ()
-  (when (and (buffer-file-name) (eq major-mode 'org-mode) (internet-up-p))
+  (when (and (buffer-file-name) (string-match-p "/org/" (buffer-file-name)))
     (sync-org-file-to-gdrive (buffer-file-name))))
 
 (add-hook 'after-save-hook 'org-sync-hook)
