@@ -108,15 +108,18 @@
 
 (setq org-agenda-files (directory-files-recursively "~/org/tdls" "\\.org"))
 
-
 (defun get-target-path (buffer-path)
   (replace-regexp-in-string "/org/" "/Google Drive/My Drive/org/" buffer-path nil 'literal))
 
 (defun sync-org-file-to-gdrive (org-file-path)
   (copy-file org-file-path (get-target-path org-file-path) ""))
 
+(defun internet-up-p (&optional host)
+  (= 0 (call-process "ping" nil nil nil "-c" "1" "-W" "1"
+                     (if host host "www.google.com"))))
+
 (defun org-sync-hook ()
-  (when (and (buffer-file-name) (eq major-mode 'org-mode))
+  (when (and (buffer-file-name) (eq major-mode 'org-mode) (internet-up-p))
     (sync-org-file-to-gdrive (buffer-file-name))))
 
 (add-hook 'after-save-hook 'org-sync-hook)
