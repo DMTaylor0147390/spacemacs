@@ -145,3 +145,5 @@
       )))
 
 (add-hook 'after-save-hook 'org-sync-hook)
+
+(setq create-lockfiles nil)
