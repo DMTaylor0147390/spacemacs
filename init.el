@@ -140,7 +140,7 @@
     (progn
       (sync-org-file-to-gdrive (buffer-file-name))
       (when (eq major-mode 'org-mode)
-        (org-ascii-export-to-ascii 1)
+        (org-ascii-export-to-ascii)
         (sync-org-file-to-gdrive (get-plain-text-file-path-for-org (buffer-file-name))))
       )))
 
