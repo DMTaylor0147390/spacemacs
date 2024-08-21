@@ -138,10 +138,11 @@
 (defun org-sync-hook ()
   (when (and (buffer-file-name) (string-match-p "/org/" (buffer-file-name)))
     (progn
-      (sync-org-file-to-gdrive (buffer-file-name))
+      ;; (sync-org-file-to-gdrive (buffer-file-name))
       (when (eq major-mode 'org-mode)
         (org-ascii-export-to-ascii)
-        (sync-org-file-to-gdrive (get-plain-text-file-path-for-org (buffer-file-name))))
+        ;; (sync-org-file-to-gdrive (get-plain-text-file-path-for-org (buffer-file-name)))
+        )
       )))
 
 (add-hook 'after-save-hook 'org-sync-hook)
