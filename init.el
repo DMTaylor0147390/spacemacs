@@ -120,7 +120,7 @@
   :config
   (evil-collection-init))
 
-(setq org-agenda-files (directory-files-recursively "~/org/tdls" "\\.org"))
+(setq org-agenda-files (directory-files-recursively "~/org/" "\\.org"))
 
 (defun get-target-path (buffer-path)
   (replace-regexp-in-string "/org/" "/Google Drive/My Drive/org/" buffer-path nil 'literal))
