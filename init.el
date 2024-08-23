@@ -138,6 +138,7 @@
 (defun org-sync-hook ()
   (when (and (buffer-file-name) (string-match-p "/org/" (buffer-file-name)))
     (progn
+      (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org"))
       ;; (sync-org-file-to-gdrive (buffer-file-name))
       (when (eq major-mode 'org-mode)
         (org-ascii-export-to-ascii)
