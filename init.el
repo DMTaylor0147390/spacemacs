@@ -120,7 +120,7 @@
   :config
   (evil-collection-init))
 
-(setq org-agenda-files (directory-files-recursively "~/org/" "\\.org"))
+(setq org-agenda-files (directory-files-recursively "~/org/" ".org"))
 
 (defun get-target-path (buffer-path)
   (replace-regexp-in-string "/org/" "/Google Drive/My Drive/org/" buffer-path nil 'literal))
@@ -138,7 +138,7 @@
 (defun org-sync-hook ()
   (when (and (buffer-file-name) (string-match-p "/org/" (buffer-file-name)))
     (progn
-      (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org"))
+      (setq org-agenda-files (directory-files-recursively "~/org/" ".org"))
       ;; (sync-org-file-to-gdrive (buffer-file-name))
       (when (eq major-mode 'org-mode)
         (org-ascii-export-to-ascii)
