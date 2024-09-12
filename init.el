@@ -149,3 +149,5 @@
 (add-hook 'after-save-hook 'org-sync-hook)
 
 (setq create-lockfiles nil)
+
+(setq initial-scratch-message ";; In order to have what you really want,\n;; you must first be who you really are\n\n")
