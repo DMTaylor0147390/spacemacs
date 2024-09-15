@@ -126,7 +126,8 @@
   :config
   (evil-collection-init 'evil-nov)
   (evil-collection-nov-setup)
-  (evil-normal-state))
+  (evil-normal-state)
+  (evil-set-initial-state 'nov-mode 'normal))
 
 (setq org-agenda-files (directory-files-recursively "~/org/" ".org"))
 
