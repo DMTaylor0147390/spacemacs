@@ -120,6 +120,14 @@
   :config
   (evil-collection-init))
 
+(use-package nov
+  :after evil-collection
+  :ensure t
+  :config
+  (evil-collection-init 'evil-nov)
+  (evil-collection-nov-setup)
+  (evil-normal-state))
+
 (setq org-agenda-files (directory-files-recursively "~/org/" ".org"))
 
 (defun get-target-path (buffer-path)
@@ -151,3 +159,14 @@
 (setq create-lockfiles nil)
 
 (setq initial-scratch-message ";; In order to have what you really want,\n;; you must first be who you really are\n\n")
+
+(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+
+(evil-collection-init 'evil-nov)
+(evil-collection-nov-setup)
+(add-hook 'nov-mode-hook 'evil-collection-init 100)
+(add-hook 'nov-mode-hook (lambda () (evil-collection-init 'evil-nov)) 100)
+(add-hook 'nov-mode-hook 'evil-collection-nov-setup 100)
+(add-hook 'nov-mode-hook (lambda () (evil-mode t)) 100)
+(add-hook 'nov-mode-hook 'evil-normal-state 100)
+(evil-normal-state)
