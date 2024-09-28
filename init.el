@@ -104,7 +104,13 @@
 
 (use-package pdf-tools
   :ensure t
-  :init (pdf-tools-install))
+  :after evil-collection
+  :init
+  (pdf-tools-install)
+  (evil-collection-init 'evil-pdf)
+  (evil-collection-pdf-setup)
+  (evil-normal-state)
+  (evil-set-initial-state 'pdf-view-mode 'normal))
 
 (use-package evil
   :ensure t
@@ -171,3 +177,8 @@
 (add-hook 'nov-mode-hook (lambda () (evil-mode t)) 100)
 (add-hook 'nov-mode-hook 'evil-normal-state 100)
 (evil-normal-state)
+(add-hook 'pdf-view-mode-hook 'evil-collection-init 100)
+(add-hook 'pdf-view-mode-hook (lambda () (evil-collection-init 'evil-pdf)) 100)
+(add-hook 'pdf-view-mode-hook 'evil-collection-nov-setup 100)
+(add-hook 'pdf-view-mode-hook (lambda () (evil-mode t)) 100)
+(add-hook 'pdf-view-mode-hook 'evil-normal-state 100)
