@@ -124,7 +124,8 @@
   :after evil
   :ensure t
   :config
-  (evil-collection-init))
+  (evil-collection-init)
+  (evil-collection-init 'evil-magit))
 
 (use-package nov
   :after evil-collection
@@ -134,6 +135,16 @@
   (evil-collection-nov-setup)
   (evil-normal-state)
   (evil-set-initial-state 'nov-mode 'normal))
+
+
+(use-package alchemist
+  :after evil-collection
+  :ensure t
+  :config
+  (evil-collection-alchemist-setup)
+  (evil-collection-init 'evil-alchemist)
+  (evil-normal-state)
+  (evil-set-initial-state 'alchemist-mode 'normal))
 
 (setq org-agenda-files (directory-files-recursively "~/org/" ".org"))
 
@@ -171,14 +182,22 @@
 
 (evil-collection-init 'evil-nov)
 (evil-collection-nov-setup)
+(evil-collection-alchemist-setup)
 (add-hook 'nov-mode-hook 'evil-collection-init 100)
 (add-hook 'nov-mode-hook (lambda () (evil-collection-init 'evil-nov)) 100)
 (add-hook 'nov-mode-hook 'evil-collection-nov-setup 100)
 (add-hook 'nov-mode-hook (lambda () (evil-mode t)) 100)
 (add-hook 'nov-mode-hook 'evil-normal-state 100)
+
 (evil-normal-state)
 (add-hook 'pdf-view-mode-hook 'evil-collection-init 100)
 (add-hook 'pdf-view-mode-hook (lambda () (evil-collection-init 'evil-pdf)) 100)
 (add-hook 'pdf-view-mode-hook 'evil-collection-nov-setup 100)
 (add-hook 'pdf-view-mode-hook (lambda () (evil-mode t)) 100)
 (add-hook 'pdf-view-mode-hook 'evil-normal-state 100)
+
+(add-hook 'alchemist-mode-hook 'evil-collection-init 100)
+(add-hook 'alchemist-mode-hook (lambda () (evil-collection-init 'evil-alchemist)) 100)
+(add-hook 'alchemist-mode-hook 'evil-collection-alchemist-setup 100)
+(add-hook 'alchemist-mode-hook (lambda () (evil-mode t)) 100)
+(add-hook 'alchemist-mode-hook 'evil-normal-state 100)
