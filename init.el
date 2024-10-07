@@ -201,3 +201,5 @@
 (add-hook 'alchemist-mode-hook 'evil-collection-alchemist-setup 100)
 (add-hook 'alchemist-mode-hook (lambda () (evil-mode t)) 100)
 (add-hook 'alchemist-mode-hook 'evil-normal-state 100)
+
+(setq auth-sources '("~/.authinfo"))
