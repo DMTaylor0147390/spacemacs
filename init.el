@@ -146,7 +146,11 @@
   (evil-normal-state)
   (evil-set-initial-state 'alchemist-mode 'normal))
 
-(setq org-agenda-files (directory-files-recursively "~/org/" ".org$"))
+(defun set-org-agenda-files ()
+  (setq org-agenda-files
+        (append (directory-files "~/org/" 1 ".org$")
+                (directory-files-recursively "~/org/work" ".org$")
+                (directory-files-recursively "~/org/tdls" ".org$"))))
 
 (defun get-target-path (buffer-path)
   (replace-regexp-in-string "/org/" "/Google Drive/My Drive/org/" buffer-path nil 'literal))
@@ -164,7 +168,7 @@
 (defun org-sync-hook ()
   (when (and (buffer-file-name) (string-match-p "/org/" (buffer-file-name)))
     (progn
-      (setq org-agenda-files (directory-files-recursively "~/org/" ".org$"))
+      (set-org-agenda-files)
       ;; (sync-org-file-to-gdrive (buffer-file-name))
       (when (eq major-mode 'org-mode)
         (org-ascii-export-to-ascii)
